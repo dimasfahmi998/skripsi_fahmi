@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_pelanggaran_madin_tree" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_madin_tree</field>
+            <field name="model">skripsi.pelanggaran_madin</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Pelanggaran Madin">
+                    <field name="tanggal" />
+                    <field name="pelanggaran_id" />
+                    <field name="pelanggaran_id_tingkat_pelanggaran" />
+                    <field name="pelanggaran_id_poin" />
+                    <field name="siswa_id" />
+                    <field name="siswa_id_nis" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_pelanggaran_madin_form" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_madin_form</field>
+            <field name="model">skripsi.pelanggaran_madin</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pelanggaran madin">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Form Pelanggaran Madin</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="pelanggaran_id" />
+                                <field name="pelanggaran_id_tingkat_pelanggaran" />
+                                <field name="pelanggaran_id_poin" />
+                                <field name="siswa_id" />
+                                <field name="siswa_id_nis" />
+                            </group>
+                            <group>
+                                
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_pelanggaran_madin_graph" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_madin</field>
+            <field name="model">skripsi.pelanggaran_madin</field>
+            <field name="arch" type="xml">
+                <graph string="Pelanggaran madin" type="bar">
+                    <field name="siswa_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_pelanggaran_madin" model="ir.actions.act_window">
+            <field name="name">Pelanggaran madin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.pelanggaran_madin</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Pelanggaran madin
+                </p><p>
+                Click the Create button to add a new Pelanggaran madin
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_pelanggaran_madin" name="Pelanggaran Madin" parent="siabm_madin" action="action_skripsi_pelanggaran_madin" sequence="130"/>
+    </data>
+</odoo>

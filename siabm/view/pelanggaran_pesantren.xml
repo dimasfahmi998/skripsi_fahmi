@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_pelanggaran_pesantren_tree" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_pesantren_tree</field>
+            <field name="model">skripsi.pelanggaran_pesantren</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Pelanggaran pesantren">
+                    <field name="tanggal" />
+                    <field name="pelanggaran_id" />
+                    <field name="pelanggaran_id_tingkat_pelanggaran" />
+                    <field name="pelanggaran_id_poin" />
+                    <field name="siswa_id" />
+                    <field name="siswa_id_nis" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_pelanggaran_pesantren_form" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_pesantren_form</field>
+            <field name="model">skripsi.pelanggaran_pesantren</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pelanggaran pesantren">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Form Pelanggaran pesantren</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="pelanggaran_id" />
+                                <field name="pelanggaran_id_tingkat_pelanggaran" />
+                                <field name="pelanggaran_id_poin" />
+                                <field name="siswa_id" />
+                                <field name="siswa_id_nis" />
+                            </group>
+                            <group>
+                                
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_skripsi_pelanggaran_pesantren_search" model="ir.ui.view"> -->
+            <!-- <field name="name">skripsi_pelanggaran_pesantren</field> -->
+            <!-- <field name="model">skripsi.pelanggaran_pesantren</field> -->
+            <!-- <field name="arch" type="xml"> -->
+                <!-- <search string="Pelanggaran pesantren"> -->
+
+                    <!-- <filter string="Name" name="filter_by_name" domain="[('name','=','')]" /> -->
+                    <!-- <filter string="Tingkat pelanggaran" name="filter_by_tingkat_pelanggaran" domain="[('tingkat_pelanggaran','=','')]" /> -->
+                    <!-- <filter string="Poin" name="filter_by_poin" domain="[('poin','=','')]" /> -->
+                    <!-- <filter string="Keterangan" name="filter_by_keterangan" domain="[('keterangan','=','')]" /> -->
+                    <!-- <field name="name" select="True"/> -->
+                    <!-- <field name="tingkat_pelanggaran" select="True"/> -->
+                    <!-- <field name="poin" select="True"/> -->
+                    <!-- <field name="keterangan" select="True"/> -->
+                    <!-- <field name="siswa_id" select="True"/> -->
+                    <!-- <field name="siswa_id_nis" select="True"/> -->
+                    <!-- <group string="Group By.."> -->
+                        <!-- <filter string="Siswa" domain="[]" name="group_by_siswa_id" context="{'group_by':'siswa_id'}"/> -->
+                    <!-- </group> -->
+                <!-- </search> -->
+            <!-- </field> -->
+        <!-- </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_pelanggaran_pesantren_graph" model="ir.ui.view">
+            <field name="name">skripsi_pelanggaran_pesantren</field>
+            <field name="model">skripsi.pelanggaran_pesantren</field>
+            <field name="arch" type="xml">
+                <graph string="Pelanggaran pesantren" type="bar">
+                    <field name="siswa_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_pelanggaran_pesantren" model="ir.actions.act_window">
+            <field name="name">Pelanggaran pesantren</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.pelanggaran_pesantren</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Pelanggaran pesantren
+                </p><p>
+                Click the Create button to add a new Pelanggaran pesantren
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_pelanggaran_pesantren" name="Pelanggaran pesantren" parent="siabm_pesantren" action="action_skripsi_pelanggaran_pesantren" sequence="140"/>
+    </data>
+</odoo>

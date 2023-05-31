@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_skripsi_siswa_menu" string="Skripsi - Siswa"
+         model="skripsi.siswa" report_type="qweb-pdf" 
+         file="skripsi.siswa"  name="siabm.skripsi_siswa_report" />
+
+        <!-- document template -->
+        <template id="siabm.skripsi_siswa_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Siswa: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>user</strong>
+                            <p class="m-0" t-field="doc.user_id" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nis</strong>
+                            <p class="m-0" t-field="doc.nis" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nisn</strong>
+                            <p class="m-0" t-field="doc.nisn" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Email</strong>
+                            <p class="m-0" t-field="doc.email" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Alamat</strong>
+                            <p class="m-0" t-field="doc.alamat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No telfon</strong>
+                            <p class="m-0" t-field="doc.no_telfon" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Agama</strong>
+                            <p class="m-0" t-field="doc.agama" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Gender</strong>
+                            <p class="m-0" t-field="doc.gender" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal lahir</strong>
+                            <p class="m-0" t-field="doc.tanggal_lahir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tempat lahir</strong>
+                            <p class="m-0" t-field="doc.tempat_lahir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nama ayah</strong>
+                            <p class="m-0" t-field="doc.nama_ayah" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nama ibu</strong>
+                            <p class="m-0" t-field="doc.nama_ibu" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Izins</h2>
+                <table class="table table-sm o_main_table" name="izin_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Lama</td>
+                            <td>Keperluan</td>
+                            <td>Catatan</td>
+                            <td>Siswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="izin_ids_tbody">
+                        <tr t-foreach="doc.izin_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.lama" /></td>
+                            <td><span t-field="line.keperluan" /></td>
+                            <td><span t-field="line.catatan" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Pelanggaran madin</h2>
+                <table class="table table-sm o_main_table" name="pelanggaran_madin_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tingkat Pelanggaran</td>
+                            <td>Tanggal Pelanggaran</td>
+                            <td>Poin</td>
+                            <td>Keterangan</td>
+                            <td>Siswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pelanggaran_madin_ids_tbody">
+                        <tr t-foreach="doc.pelanggaran_madin_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tanggal" /></td>
+                            <td><span t-field="line.tingkat_pelanggaran" /></td>
+                            <td><span t-field="line.poin" /></td>
+                            <td><span t-field="line.keterangan" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Penlanggaran madrasah</h2>
+                <table class="table table-sm o_main_table" name="pelanggaran_madrasah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tingkat pelanggaran</td>
+                            <td>Tanggal Pelanggaran</td>
+                            <td>Poin</td>
+                            <td>Keterangan</td>
+                            <td>Siswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pelanggaran_madrasah_ids_tbody">
+                        <tr t-foreach="doc.pelanggaran_madrasah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tanggal" /></td>
+                            <td><span t-field="line.tingkat_pelanggaran" /></td>
+                            <td><span t-field="line.poin" /></td>
+                            <td><span t-field="line.keterangan" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Penlanggaran pesantren</h2>
+                <table class="table table-sm o_main_table" name="pelanggaran_pesantren_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tingkat pelanggaran</td>
+                            <td>Tanggal Pelanggaran</td>
+                            <td>Poin</td>
+                            <td>Keterangan</td>
+                            <td>Siswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="penlanggaran_pesantren_ids_tbody">
+                        <tr t-foreach="doc.penlanggaran_pesantren_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tingkat_pelanggaran" /></td>
+                            <td><span t-field="line.tanggal" /></td>
+                            <td><span t-field="line.poin" /></td>
+                            <td><span t-field="line.keterangan" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>List siswa</h2>
+                <table class="table table-sm o_main_table" name="list_siswa_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Siswa</td>
+                            <td>Kamar</td>
+                            <td>Detile kelas madin</td>
+                            <td>Detile kelas madin</td>
+                        </tr>
+                    </thead>
+                    <tbody class="list_siswa_ids_tbody">
+                        <tr t-foreach="doc.list_siswa_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                            <td><span t-field="line.kamar_id" /></td>
+                            <td><span t-field="line.detile_kelas_madin_id" /></td>
+                            <td><span t-field="line.detile_kelas_madin_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Absen</h2>
+                <table class="table table-sm o_main_table" name="absen_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Siswa</td>
+                            <td>Absen madin</td>
+                            <td>Absen madrasah</td>
+                        </tr>
+                    </thead>
+                    <tbody class="absen_ids_tbody">
+                        <tr t-foreach="doc.absen_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                            <td><span t-field="line.absen_madin_id" /></td>
+                            <td><span t-field="line.absen_madrasah_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <table class="table table-sm o_main_table" name="detile_kelas_madin_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tahun Ajaran</td>
+                            <td>Semester</td>
+                            <td>Grade</td>
+                            <td>Ustadz</td>
+                            <td>Siswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detile_kelas_madin_ids_tbody">
+                        <tr t-foreach="doc.detile_kelas_madin_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tahun_ajaran" /></td>
+                            <td><span t-field="line.semester" /></td>
+                            <td><span t-field="line.grade" /></td>
+                            <td><span t-field="line.ustadz" /></td>
+                            <td><span t-field="line.siswa" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="siabm.skripsi_siswa_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="siabm.skripsi_siswa_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_list_siswa_tree" model="ir.ui.view">
+            <field name="name">skripsi_list_siswa_tree</field>
+            <field name="model">skripsi.list_siswa</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="List siswa">
+                    <!-- <field name="name" /> -->
+                    <field name="siswa_id" />
+                    <!-- <field name="kamar_id" />
+                    <field name="detile_kelas_madin_id" />
+                    <field name="detile_kelas_madin_id" /> -->
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_list_siswa_form" model="ir.ui.view">
+            <field name="name">skripsi_list_siswa_form</field>
+            <field name="model">skripsi.list_siswa</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="List siswa">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <!-- <h1><field name="name"/></h1> -->
+                        </div>
+                        <group>
+                            <group>
+                                <field name="siswa_id" />
+                                <!-- <field name="kamar_id" />
+                                <field name="detile_kelas_madin_id" />
+                                <field name="detile_kelas_madin_id" /> -->
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_skripsi_list_siswa_search" model="ir.ui.view">
+            <field name="name">skripsi_list_siswa</field>
+            <field name="model">skripsi.list_siswa</field>
+            <field name="arch" type="xml">
+                <search string="List siswa">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <!-- <field name="name" select="True"/> -->
+                    <field name="siswa_id" select="True"/>
+                    <!-- <field name="kamar_id" select="True"/>
+                    <field name="detile_kelas_madin_id" select="True"/>
+                    <field name="detile_kelas_madin_id" select="True"/> -->
+                    <group string="Group By..">
+                        <filter string="Siswa" domain="[]" name="group_by_siswa_id" context="{'group_by':'siswa_id'}"/>
+                        <!-- <filter string="Kamar" domain="[]" name="group_by_kamar_id" context="{'group_by':'kamar_id'}"/>
+                        <filter string="Detile kelas madin" domain="[]" name="group_by_detile_kelas_madin_id" context="{'group_by':'detile_kelas_madin_id'}"/>
+                        <filter string="Detile kelas madin" domain="[]" name="group_by_detile_kelas_madin_id" context="{'group_by':'detile_kelas_madin_id'}"/> -->
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_skripsi_list_siswa_kanban" model="ir.ui.view" >
+            <field name="name">skripsi_list_siswa</field>
+            <field name="model">skripsi.list_siswa</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <!-- <field name="name" /> -->
+                    <field name="siswa_id" />
+                    <!-- <field name="kamar_id" />
+                    <field name="detile_kelas_madin_id" />
+                    <field name="detile_kelas_madin_id" /> -->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Siswa</span> <field name="siswa_id"></field>
+                                        </li>
+
+<!-- 
+                                        <li>
+                                            <span class="text-muted">Kamar</span> <field name="kamar_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Detile kelas madin</span> <field name="detile_kelas_madin_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Detile kelas madin</span> <field name="detile_kelas_madin_id"></field>
+                                        </li> -->
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_list_siswa_graph" model="ir.ui.view">
+            <field name="name">skripsi_list_siswa</field>
+            <field name="model">skripsi.list_siswa</field>
+            <field name="arch" type="xml">
+                <graph string="List siswa" type="bar">
+                    <field name="siswa_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_list_siswa" model="ir.actions.act_window">
+            <field name="name">List siswa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.list_siswa</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new List siswa
+                </p><p>
+                Click the Create button to add a new List siswa
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_skripsi_list_siswa" name="List siswa" parent="siabm_config_menu" action="action_skripsi_list_siswa" sequence="160"/> -->
+    </data>
+</odoo>

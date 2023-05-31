@@ -1,0 +1,10 @@
+<odoo>
+	<data>
+		<menuitem id="siabm_top_menu" name="SIA BM" sequence="20" web_icon="siabm,static/description/icon.png" />
+		<menuitem id="siabm_sub_menu" name="Operations" sequence="40" parent="siabm_top_menu" />
+		<menuitem id="siabm_config_menu" name="Master Data" sequence="50" parent="siabm_top_menu" />
+		<menuitem id="siabm_madin" name="Madin" sequence="50" parent="siabm_top_menu" />
+		<menuitem id="siabm_madrasah" name="Madrasah" sequence="50" parent="siabm_top_menu" />
+		<menuitem id="siabm_pesantren" name="Pesantren" sequence="50" parent="siabm_top_menu" />
+	</data>
+</odoo>

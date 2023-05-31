@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_skripsi_detile_kelas_madin_menu" string="Skripsi - Detile kelas madin"
+         model="skripsi.detile_kelas_madin" report_type="qweb-pdf" 
+         file="skripsi.detile_kelas_madin"  name="siabm.skripsi_detile_kelas_madin_report" />
+
+        <!-- document template -->
+        <template id="siabm.skripsi_detile_kelas_madin_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Detile kelas madin: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun ajaran</strong>
+                            <p class="m-0" t-field="doc.tahun_ajaran" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester</strong>
+                            <p class="m-0" t-field="doc.semester" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Grade</strong>
+                            <p class="m-0" t-field="doc.grade" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Absen madins</h2>
+                <table class="table table-sm o_main_table" name="absen_madin_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Detile kelas madin</td>
+                        </tr>
+                    </thead>
+                    <tbody class="absen_madin_ids_tbody">
+                        <tr t-foreach="doc.absen_madin_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.detile_kelas_madin_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>List siswa</h2>
+                <table class="table table-sm o_main_table" name="list_siswa_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Siswa</td>
+                            <td>Kamar</td>
+                            <td>Detile kelas madin</td>
+                            <td>Detile kelas madin</td>
+                        </tr>
+                    </thead>
+                    <tbody class="list_siswa_ids_tbody">
+                        <tr t-foreach="doc.list_siswa_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.siswa_id" /></td>
+                            <td><span t-field="line.kamar_id" /></td>
+                            <td><span t-field="line.detile_kelas_madin_id" /></td>
+                            <td><span t-field="line.detile_kelas_madin_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="siabm.skripsi_detile_kelas_madin_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="siabm.skripsi_detile_kelas_madin_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

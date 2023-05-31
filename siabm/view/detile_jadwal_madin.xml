@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_detile_jadwal_madin_tree" model="ir.ui.view">
+            <field name="name">skripsi_detile_jadwal_madin_tree</field>
+            <field name="model">skripsi.detile_jadwal_madin</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Detile jadwal madin">
+                    <field name="name" />
+                    <field name="jamke" />
+                    <field name="matpel_id" />
+                    <field name="ustadz_id" />
+                    <field name="detile_kelas_madin_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_detile_jadwal_madin_form" model="ir.ui.view">
+            <field name="name">skripsi_detile_jadwal_madin_form</field>
+            <field name="model">skripsi.detile_jadwal_madin</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Detile jadwal madin">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Form Detail Jadwal Madin</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="jamke" />
+                                <field name="matpel_id" />
+                                <field name="ustadz_id" />
+                                <field name="detile_kelas_madin_id" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_skripsi_detile_jadwal_madin_search" model="ir.ui.view">
+            <field name="name">skripsi_detile_jadwal_madin</field>
+            <field name="model">skripsi.detile_jadwal_madin</field>
+            <field name="arch" type="xml">
+                <search string="Detile jadwal madin">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Jamke" name="filter_by_jamke" domain="[('jamke','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="jamke" select="True"/>
+                    <field name="matpel_id" select="True"/>
+                    <field name="ustadz_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Matpel" domain="[]" name="group_by_matpel_id" context="{'group_by':'matpel_id'}"/>
+                        <filter string="Ustadz" domain="[]" name="group_by_ustadz_id" context="{'group_by':'ustadz_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_skripsi_detile_jadwal_madin_kanban" model="ir.ui.view" >
+            <field name="name">skripsi_detile_jadwal_madin</field>
+            <field name="model">skripsi.detile_jadwal_madin</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="jamke" />
+                    <field name="matpel_id" />
+                    <field name="ustadz_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Matpel</span> <field name="matpel_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Ustadz</span> <field name="ustadz_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_detile_jadwal_madin_graph" model="ir.ui.view">
+            <field name="name">skripsi_detile_jadwal_madin</field>
+            <field name="model">skripsi.detile_jadwal_madin</field>
+            <field name="arch" type="xml">
+                <graph string="Detile jadwal madin" type="bar">
+                    <field name="matpel_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_detile_jadwal_madin" model="ir.actions.act_window">
+            <field name="name">Detile jadwal madin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.detile_jadwal_madin</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Detile jadwal madin
+                </p><p>
+                Click the Create button to add a new Detile jadwal madin
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_detile_jadwal_madin" name="Penjadwal Kelas Madin" parent="siabm_madin" action="action_skripsi_detile_jadwal_madin" sequence="20"/>
+    </data>
+</odoo>

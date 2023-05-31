@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_skripsi_guru_menu" string="Skripsi - Guru"
+         model="skripsi.guru" report_type="qweb-pdf" 
+         file="skripsi.guru"  name="siabm.skripsi_guru_report" />
+
+        <!-- document template -->
+        <template id="siabm.skripsi_guru_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Guru: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.nip" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Alamat</strong>
+                            <p class="m-0" t-field="doc.alamat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Email</strong>
+                            <p class="m-0" t-field="doc.email" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No telfon</strong>
+                            <p class="m-0" t-field="doc.no_telfon" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Agama</strong>
+                            <p class="m-0" t-field="doc.agama" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Gender</strong>
+                            <p class="m-0" t-field="doc.gender" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Keahlian</strong>
+                            <p class="m-0" t-field="doc.keahlian" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pendidikan terakhir</strong>
+                            <p class="m-0" t-field="doc.pendidikan_terakhir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal lahir</strong>
+                            <p class="m-0" t-field="doc.tanggal_lahir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tempat lahir</strong>
+                            <p class="m-0" t-field="doc.tempat_lahir" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Detile jadwal madrasahs</h2>
+                <table class="table table-sm o_main_table" name="detile_jadwal_madrasah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jamke</td>
+                            <td>Matpel</td>
+                            <td>Guru</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detile_jadwal_madrasah_ids_tbody">
+                        <tr t-foreach="doc.detile_jadwal_madrasah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jamke" /></td>
+                            <td><span t-field="line.matpel_id" /></td>
+                            <td><span t-field="line.guru_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Detile kelas madrasahs</h2>
+                <table class="table table-sm o_main_table" name="detile_kelas_madrasah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tahun ajaran</td>
+                            <td>Semester</td>
+                            <td>Guru</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detile_kelas_madrasah_ids_tbody">
+                        <tr t-foreach="doc.detile_kelas_madrasah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tahun_ajaran" /></td>
+                            <td><span t-field="line.semester" /></td>
+                            <td><span t-field="line.guru_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="siabm.skripsi_guru_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="siabm.skripsi_guru_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_kamar_tree" model="ir.ui.view">
+            <field name="name">skripsi_kamar_tree</field>
+            <field name="model">skripsi.kamar</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kamar">
+                    <field name="name" />
+                    <field name="pengasuh_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_kamar_form" model="ir.ui.view">
+            <field name="name">skripsi_kamar_form</field>
+            <field name="model">skripsi.kamar</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kamar">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Form Data Kamar</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="pengasuh_id" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Santri">
+                                <field name="siswa_ids" colspan="4">
+                                    <tree>
+                                        <field name="nis"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_skripsi_kamar_search" model="ir.ui.view">
+            <field name="name">skripsi_kamar</field>
+            <field name="model">skripsi.kamar</field>
+            <field name="arch" type="xml">
+                <search string="Kamar">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="pengasuh_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Pengasuh" domain="[]" name="group_by_pengasuh_id" context="{'group_by':'pengasuh_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_skripsi_kamar_kanban" model="ir.ui.view" >
+            <field name="name">skripsi_kamar</field>
+            <field name="model">skripsi.kamar</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="pengasuh_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Pengasuh</span> <field name="pengasuh_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_kamar_graph" model="ir.ui.view">
+            <field name="name">skripsi_kamar</field>
+            <field name="model">skripsi.kamar</field>
+            <field name="arch" type="xml">
+                <graph string="Kamar" type="bar">
+                    <field name="pengasuh_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_kamar" model="ir.actions.act_window">
+            <field name="name">Kamar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.kamar</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kamar
+                </p><p>
+                Click the Create button to add a new Kamar
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_kamar" name="Kamar" parent="siabm_pesantren" action="action_skripsi_kamar" sequence="120"/>
+    </data>
+</odoo>

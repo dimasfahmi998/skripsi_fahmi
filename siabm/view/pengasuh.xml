@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_pengasuh_tree" model="ir.ui.view">
+            <field name="name">skripsi_pengasuh_tree</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Pengasuh">
+                    <field name="name" />
+                    <field name="alamat" />
+                    <field name="agama" />
+                    <field name="email" />
+                    <field name="no_telfon" />
+                    <field name="gender" />
+                    <field name="pendidikan_terakhir" />
+                    <field name="tempat_lahir" />
+                    <field name="tanggal_lahir" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_pengasuh_form" model="ir.ui.view">
+            <field name="name">skripsi_pengasuh_form</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pengasuh">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Profile Pengasuh</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="alamat" />
+                                <field name="agama" />
+                                <field name="email" />
+                                <field name="no_telfon" />
+                                <field name="gender" />
+                                <field name="pendidikan_terakhir" />
+                                <field name="tempat_lahir" />
+                                <field name="tanggal_lahir" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kamar">
+                                <field name="kamar_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_skripsi_pengasuh_search" model="ir.ui.view">
+            <field name="name">skripsi_pengasuh</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="arch" type="xml">
+                <search string="Pengasuh">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Alamat" name="filter_by_alamat" domain="[('alamat','=','')]" />
+                    <filter string="Agama" name="filter_by_agama" domain="[('agama','=','')]" />
+                    <filter string="Email" name="filter_by_email" domain="[('email','=','')]" />
+                    <filter string="No telfon" name="filter_by_no_telfon" domain="[('no_telfon','=','')]" />
+                    <filter string="Gender" name="filter_by_gender" domain="[('gender','=','')]" />
+                    <filter string="Pendidikan terakhir" name="filter_by_pendidikan_terakhir" domain="[('pendidikan_terakhir','=','')]" />
+                    <filter string="Tempat lahir" name="filter_by_tempat_lahir" domain="[('tempat_lahir','=','')]" />
+                    <filter string="Tanggal lahir" name="filter_by_tanggal_lahir" domain="[('tanggal_lahir','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="alamat" select="True"/>
+                    <field name="agama" select="True"/>
+                    <field name="email" select="True"/>
+                    <field name="no_telfon" select="True"/>
+                    <field name="gender" select="True"/>
+                    <field name="pendidikan_terakhir" select="True"/>
+                    <field name="tempat_lahir" select="True"/>
+                    <field name="tanggal_lahir" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_skripsi_pengasuh_kanban" model="ir.ui.view" >
+            <field name="name">skripsi_pengasuh</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="alamat" />
+                    <field name="agama" />
+                    <field name="email" />
+                    <field name="no_telfon" />
+                    <field name="gender" />
+                    <field name="pendidikan_terakhir" />
+                    <field name="tempat_lahir" />
+                    <field name="tanggal_lahir" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-muted">Tanggal lahir</span> <field name="tanggal_lahir"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_skripsi_pengasuh_cal" model="ir.ui.view">
+            <field name="name">skripsi_pengasuh_cal</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="arch" type="xml">
+                <calendar string="Pengasuh" date_start="tanggal_lahir">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_skripsi_pengasuh_graph" model="ir.ui.view">
+            <field name="name">skripsi_pengasuh</field>
+            <field name="model">skripsi.pengasuh</field>
+            <field name="arch" type="xml">
+                <graph string="Pengasuh" type="bar">
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_pengasuh" model="ir.actions.act_window">
+            <field name="name">Pengasuh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.pengasuh</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Pengasuh
+                </p><p>
+                Click the Create button to add a new Pengasuh
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_pengasuh" name="Pengasuh" parent="siabm_config_menu" action="action_skripsi_pengasuh" sequence="110"/>
+    </data>
+</odoo>

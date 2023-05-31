@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_skripsi_detile_kelas_madin_tree" model="ir.ui.view">
+            <field name="name">skripsi_detile_kelas_madin_tree</field>
+            <field name="model">skripsi.detile_kelas_madin</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Form Rombongan Belajar">
+                    <field name="name" />
+                    <field name="tahun_ajaran" />
+                    <field name="semester" />
+                    <field name="grade" />
+                    <field name="ustadz_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_skripsi_detile_kelas_madin_form" model="ir.ui.view">
+            <field name="name">skripsi_detile_kelas_madin_form</field>
+            <field name="model">skripsi.detile_kelas_madin</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Form Rombongan Belajar">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <h1>Form Rombongan Belajar</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="tahun_ajaran" />
+                                <field name="semester" />
+                                <field name="grade" />
+                                <field name="ustadz_id" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Siswa">
+                                <field name="siswa_ids" colspan="4">
+                                    <tree>
+                                        <field name="nis"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Jadwal Kelas">
+                                <field name="detile_jadwal_madin_ids"/>
+                            </page>
+                            <page string="Materi">
+                                <field name="materi_madin_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_skripsi_detile_kelas_madin_search" model="ir.ui.view">
+            <field name="name">skripsi_detile_kelas_madin</field>
+            <field name="model">skripsi.detile_kelas_madin</field>
+            <field name="arch" type="xml">
+                <search string="Form Rombongan Belajar">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tahun ajaran" name="filter_by_tahun_ajaran" domain="[('tahun_ajaran','=','')]" />
+                    <filter string="Semester" name="filter_by_semester" domain="[('semester','=','')]" />
+                    <filter string="Grade" name="filter_by_grade" domain="[('grade','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tahun_ajaran" select="True"/>
+                    <field name="semester" select="True"/>
+                    <field name="grade" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_skripsi_detile_kelas_madin_kanban" model="ir.ui.view" >
+            <field name="name">skripsi_detile_kelas_madin</field>
+            <field name="model">skripsi.detile_kelas_madin</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="tahun_ajaran" />
+                    <field name="semester" />
+                    <field name="grade" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_skripsi_detile_kelas_madin_graph" model="ir.ui.view">
+            <field name="name">skripsi_detile_kelas_madin</field>
+            <field name="model">skripsi.detile_kelas_madin</field>
+            <field name="arch" type="xml">
+                <graph string="Form Rombongan Belajar" type="bar">
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_skripsi_detile_kelas_madin" model="ir.actions.act_window">
+            <field name="name">Detile Rombongan Belajar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skripsi.detile_kelas_madin</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Detile Rombongan Belajar
+                </p><p>
+                Click the Create button to add a new Detile Rombongan Belajar
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_skripsi_detile_kelas_madin" name="Rombongan Belajar" parent="siabm_madin" action="action_skripsi_detile_kelas_madin" sequence="40"/>
+    </data>
+</odoo>
